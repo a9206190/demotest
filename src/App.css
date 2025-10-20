@@ -1,0 +1,223 @@
+/* ========= 原本設定（調整過） ========= */
+
+/* 讓整個 App 走全寬，不被限制 */
+#root {
+  /* 移除原本的 max-width / padding / text-align */
+  max-width: none !important;
+  padding: 0 !important;
+  text-align: initial !important;
+
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 讓頁面元素佔滿視窗 */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: #f9f9f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* 你的原 logo 動畫/展示 */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card { padding: 2em; }
+.read-the-docs { color: #888; }
+
+/* main 彈性填滿 (可選) */
+main { flex: 1 0 auto; }
+
+/* ========= Footer 新增樣式 ========= */
+
+.footer {
+  background-color: #111827; /* 深藍灰 */
+  color: #fff;
+  padding: 3rem 1rem 1rem;
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+}
+
+.footer a {
+  color: #ddd;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer a:hover {
+  color: #00b4ff;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* 左：Logo + 公司介紹 */
+.footer-left {
+  flex: 1 1 40%;
+  min-width: 250px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.footer-logo img {
+  width: 60px;
+  height: auto;
+}
+.footer-logo h3 {
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.footer-left p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #ddd;
+  margin: 0.2rem 0 0;
+}
+
+/* 中：聯絡我們 */
+.footer-middle {
+  flex: 1 1 25%;
+  min-width: 200px;
+}
+.footer-middle h4 {
+  margin: 0 0 0.8rem 0;
+  color: #ccc;
+}
+.footer-middle p {
+  margin: 0.3rem 0;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+/* 右：快速選單 */
+.footer-right {
+  flex: 1 1 20%;
+  min-width: 180px;
+}
+.footer-right h4 {
+  margin: 0 0 0.8rem 0;
+  color: #ccc;
+}
+.footer-right ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-right li { margin-bottom: 0.4rem; }
+
+/* 底部版權列 */
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 1rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* ========= RWD ========= */
+/* ========= 手機版 Footer 排版優化 ========= */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start; /* ✅ 靠左 */
+    text-align: left;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* 左區塊：Logo + 公司介紹靠左 */
+  .footer-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-logo {
+    justify-content: flex-start; /* ✅ Logo 與公司名靠左 */
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-left p {
+    text-align: left;
+    margin-top: 0.5rem;
+  }
+
+  /* 中區塊：聯絡我們 — 水平排列 */
+  .footer-middle {
+    display:block;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1.2rem;
+  }
+
+  .footer-middle h4 {
+    display: flex;
+  }
+
+  .footer-middle p {
+    margin: 0;
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  /* 右區塊：快速選單靠左垂直 */
+  .footer-right {
+    text-align: left;
+    margin-top: 1.5rem;
+  }
+
+  .footer-right ul {
+    align-items: flex-start;
+  }
+
+  .footer-right li {
+    margin-bottom: 0.5rem;
+  }
+}

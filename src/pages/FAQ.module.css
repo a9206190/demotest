@@ -1,0 +1,247 @@
+/* ============================== */
+/*        FAQ 專屬樣式隔離        */
+/* ============================== */
+.faqPage {
+  all: revert;
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 20px;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+/* 標題區塊 */
+.faqTitle {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  color: #333;
+}
+
+.faqSubtitle {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* 問題列表 */
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqItem {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.active {
+  background: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.faqQuestion {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #222;
+  padding: 20px;
+  transition: background 0.2s ease;
+}
+
+.faqQuestion:hover {
+  background: #f2f2f2;
+}
+
+.faqIcon {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #888;
+  transition: transform 0.3s ease;
+}
+
+.open {
+  transform: rotate(180deg);
+  color: #444;
+}
+
+.faqAnswer {
+  padding: 0 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  color: #444;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* ============================== */
+/*        FAQ 諮詢按鈕區塊         */
+/* ============================== */
+.faqHelpSection {
+  text-align: center;
+  background-color: #f2f8f7; 
+  padding: 1em 1rem;
+  padding-bottom: 4rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.347);
+  max-width: 700px;    
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+  border-radius: 12px;
+}
+
+/* ✅ 四個水平排列的按鈕區 */
+.faqHelpButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap; 
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.lineIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  vertical-align: middle;
+  margin: 0;
+  border-radius: 4px; /* 可視需要保留或移除 */
+}
+/* 按鈕樣式 */
+.faqBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* 圖片與文字之間的間距 */
+  flex-direction: row; /* 🔥 強制水平排列 */
+}
+
+.faqhelph2 {
+  font-size: 2rem;
+  color: rgb(179, 29, 77);
+  margin-bottom: 0.5rem;
+}
+
+.faqhelptext{
+  font-size: 1.3rem;
+  color: #000000;
+  margin-bottom: 2rem;
+}
+/* 各按鈕配色（FAQ 專用，不會被 Hero 蓋掉） */
+.faqPhone {
+  background-color: rgb(179, 29, 77) !important;
+}
+.faqLine {
+  background-color: #00c300 !important;
+}
+.faqLoan {
+  background-color: rgb(179, 29, 77) !important;
+}
+.faqConsult {
+  background-color: rgb(179, 29, 77) !important;
+}
+
+.faqBtn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+/* RWD 手機版：小螢幕再換行 */
+@media (max-width: 700px) {
+  .faqHelpButtons {
+    flex-wrap: wrap; /* ✅ 小螢幕允許換行 */
+  }
+  .faqBtn {
+    flex: 1 1 45%;
+    max-width: 45%;
+  }
+}
+/* ============================== */
+/* 📱 手機版 FAQ 諮詢按鈕區塊優化  */
+/* ============================== */
+@media (max-width: 768px) {
+  .faqHelpSection {
+    margin: 2rem 1rem;
+    padding-top: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    border: 2px solid rgb(199, 27, 77);
+    width: calc(100% - 2rem);
+  }
+
+  .faqhelph2 {
+    font-size: 1.5rem;
+    color: #b31d4d;
+  }
+
+  .faqhelptext {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  /* 🔹 改為 2x2 按鈕排列 */
+  .faqHelpButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .faqBtn {
+    width: 100%;
+    max-width: 150px;
+    padding: 0.9rem 0.5rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .faqBtn:hover {
+    background-color: #8d0f3a;
+  }
+
+  /* 個別顏色微調 */
+  .faqPhone {
+    background-color: rgb(130, 30, 77) !important;
+  }
+
+  .faqLine {
+    background-color: rgb(0, 185, 0) !important;
+  }
+
+  .faqLoan {
+    background-color: rgb(60, 145, 175) !important;
+  }
+
+  .faqConsult {
+    background-color: rgb(179, 29, 77) !important;
+  }
+
+  /* icon 微調大小 */
+  .lineIcon {
+    width: 22px;
+    height: 22px;
+    margin-right: 4px;
+  }
+}

@@ -1,0 +1,52 @@
+# =============================
+# 🔧 通用暫存與系統檔案
+# =============================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# =============================
+# 🧱 Node / 前端相關
+# =============================
+node_modules/
+dist/
+dist-ssr/
+*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# VSCode / IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# =============================
+# 🐘 PHP / Composer 後端
+# =============================
+vendor/
+composer.lock
+tmp/
+uploads/
+
+# =============================
+# ⚙️ 環境設定與私密資訊
+# =============================
+.env
+.env.local
+config.php
+
+# =============================
+# 🗃️ 資料庫備份與匯出
+# =============================
+*.sql
+*.sqlite
+*.db
+*.bak

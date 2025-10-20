@@ -1,0 +1,342 @@
+.mainContent {
+  padding-top: 20px;
+  padding-left: 40px;
+  background: #f8fafc;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+/* === 搜尋欄 === */
+.searchBar input {
+  width: 300px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* === 表格 === */
+.loanTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.loanTable th,
+.loanTable td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+}
+
+.loanTable th {
+  background: #f1f5f9;
+  color: #374151;
+  text-align: left;
+}
+
+/* === 通用按鈕 === */
+.actionBtn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  margin-right: 5px;
+  transition: all 0.2s ease;
+}
+
+.actionBtn:hover {
+  transform: scale(1.05);
+}
+
+/* === 按鈕顏色分類 === */
+.contractBtn {
+  background: #10b981; /* 綠色 查看合約 */
+}
+.contractBtn:hover {
+  background: #0ea370;
+}
+
+.editBtn {
+  background: #3b82f6; /* 藍色 編輯 */
+}
+.editBtn:hover {
+  background: #2563eb;
+}
+
+.deleteBtn {
+  background: #ef4444; /* 紅色 刪除 */
+}
+.deleteBtn:hover {
+  background: #dc2626;
+}
+
+.saveBtn {
+  background-color: #4caf50;
+}
+.saveBtn:hover {
+  background-color: #3b9442;
+}
+
+.cancelBtn {
+  background-color: #ccc;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.cancelBtn:hover {
+  background-color: #bdbdbd;
+}
+
+/* === Modal 視窗 === */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modalBox {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+/* === 關閉按鈕 === */
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #000;
+  transform: scale(1.1);
+}
+
+
+/* === 編輯表單 === */
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.noteInput {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.statusSelect {
+  width: 100%;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.editActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* === Tabs === */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.tabBtn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  background: #898989;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.tabBtn:hover {
+  background: #3b82f6;
+}
+
+.activeTab {
+  background: #3b82f6;
+  color: #fff;
+}
+
+/* === 分頁內容 === */
+.tabContent {
+  line-height: 1.8;
+}
+
+.detailBox p {
+  margin: 4px 0;
+}
+
+/* === 合約內容區 === */
+.contractView {
+  background: #f9fafb;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+.contractView h2 {
+    text-align: center;
+}
+.contractText p {
+  margin: 6px 0;
+}
+
+/* === 上傳檔案區 === */
+.uploads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.uploadItem {
+  display: inline-block;
+  text-align: center;
+  margin: 8px;
+}
+
+.uploadImg {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: all 0.2s ease;
+}
+
+.uploadImg:hover {
+  transform: scale(1.05);
+  border-color: #3b82f6;
+}
+
+/* === Toast === */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #10b981;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === 狀態 Tag === */
+.statusTag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.status_待審核 {
+  background: #f9e79f;
+  color: #7d6608;
+}
+.status_已核准 {
+  background: #abebc6;
+  color: #145a32;
+}
+.status_已拒絕 {
+  background: #f5b7b1;
+  color: #922b21;
+}
+.status_已結清 {
+  background: #aed6f1;
+  color: #1b4f72;
+}
+
+/* === 捲軸樣式 === */
+.modalBox::-webkit-scrollbar {
+  width: 8px;
+}
+.modalBox::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 4px;
+}
+.modalBox::-webkit-scrollbar-thumb:hover {
+  background-color: #9ca3af;
+}
+.tabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.pdfBtn {
+  margin-left: auto;
+  background-color: #2563eb;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s ease;
+}
+
+.pdfBtn:hover {
+  background-color: #1e40af;
+}

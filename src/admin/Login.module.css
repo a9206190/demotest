@@ -1,0 +1,110 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a, #222);
+}
+
+.loginBox {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  width: 360px;
+  text-align: center;
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #7d7d7d;
+  font-weight: 700;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0 15px 0;
+  border-radius: 6px;
+  border: 1px solid #000000;
+  font-size: 16px;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.loginBtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.loginBtn:hover {
+  background-color: #0056b3;
+}
+
+.loginBtn:disabled {
+  background-color: #000000;
+  cursor: not-allowed;
+}
+
+.hint {
+  margin-top: 15px;
+  color: #8a8a8a;
+  font-size: 13px;
+}
+
+.errorMsg {
+  color: #000000;
+}
+
+/* ====================== */
+/* ✅ 手機版調整區塊 */
+/* ====================== */
+@media screen and (max-width: 600px) {
+  .loginContainer {
+    height: auto;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #111, #333);
+  }
+
+  .loginBox {
+    width: 100%;
+    max-width: 340px;
+    padding: 30px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .input {
+    font-size: 15px;
+    padding: 9px;
+  }
+
+  .loginBtn {
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .hint {
+    font-size: 12px;
+    margin-top: 12px;
+  }
+}

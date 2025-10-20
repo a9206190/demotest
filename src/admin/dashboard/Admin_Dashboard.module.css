@@ -1,0 +1,645 @@
+/* =============================== */
+/* 🌐 全域設定 */
+/* =============================== */
+.adminContainer {
+  display: flex;
+  height: 100vh;
+  background: #f5f6fa;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+/* =============================== */
+/* 🧭 左側導覽列 */
+/* =============================== */
+.sidebar {
+  width: 230px;
+  background: #1f1f2e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.sidebarTitle {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.sdiebarACT {
+  text-align: center;
+}
+
+.adminBtn {
+  margin-left: 12px;
+  background: #162c43;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.adminBtn:hover {
+  background: #0056b3;
+}
+
+/* === 導覽選單 === */
+.menuList {
+  list-style: none;
+  padding: 0;
+}
+
+.menuList li {
+  padding: 12px 25px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menuList li:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.menuList .active {
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+}
+
+/* === 底部按鈕 === */
+.sidebarBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+.reloadBtn,
+.logoutBtn {
+  background: #34344a;
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.reloadBtn:hover {
+  background: #4a4a68;
+}
+
+.logoutBtn:hover {
+  background: #ff5555;
+}
+
+/* =============================== */
+/* 📊 主內容區 */
+/* =============================== */
+.mainContent {
+  flex: 1;
+  padding-top: 0.3rem;
+  padding-left: 40px;
+  background: #f7f9fb;
+  min-height: 100vh;
+  overflow-y: auto;
+  font-family: "Noto Sans TC", "Inter", sans-serif;
+  color: #333;
+}
+
+/* === 頁首 === */
+.header {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.role {
+  color: #777;
+  font-size: 14px;
+}
+
+/* === 儀表卡片 === */
+.dashboardContent {
+  background: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: #f1f3f9;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* === 標題與段落 === */
+.mainContent h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.mainContent p {
+  margin-bottom: 30px;
+  color: #6b7280;
+}
+
+/* === 錯誤提示 === */
+.error {
+  color: #b91c1c;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  margin: 80px auto;
+  width: 80%;
+}
+
+/* =============================== */
+/* 🧾 表單與搜尋區塊 */
+/* =============================== */
+.formBox {
+  background: #fff;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.formBox h3 {
+  width: 100%;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: #1f2937;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 4px;
+}
+
+.formBox input,
+.formBox select {
+  flex: 1 1 200px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.formBox input:focus,
+.formBox select:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 2px #bfdbfe;
+}
+
+.formBox button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.formBox button:hover {
+  background: #1e40af;
+}
+
+/* === 搜尋區塊 === */
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.searchBar input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.searchBar input:focus {
+  border-color: #2563eb;
+  outline: none;
+  box-shadow: 0 0 0 2px #bfdbfe;
+}
+
+.searchBar button {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.searchBar button:hover {
+  background: #059669;
+}
+
+/* =============================== */
+/* 📋 表格樣式 */
+/* =============================== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 10px;
+}
+
+.table th {
+  background: #f3f4f6;
+  color: #374151;
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #4b5563;
+  font-size: 0.93rem;
+}
+
+.table tr:hover td {
+  background: #f9fafb;
+}
+
+/* === 表格按鈕 === */
+.table button {
+  background: none;
+  border: none;
+  padding: 6px 10px;
+  margin: 0 2px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.table button:hover {
+  transform: scale(1.05);
+}
+
+.table button:first-of-type {
+  background: #3b82f6;
+  color: white;
+}
+
+.table button:first-of-type:hover {
+  background: #1e40af;
+}
+
+.table button:last-of-type {
+  background: #ef4444;
+  color: white;
+}
+
+.table button:last-of-type:hover {
+  background: #b91c1c;
+}
+
+/* =============================== */
+/* 🧱 Modal 彈窗 */
+/* =============================== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.25s ease;
+}
+
+.modal h3 {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: #1f2937;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 8px;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px #bfdbfe;
+  outline: none;
+}
+
+.modalBtns {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+  gap: 10px;
+}
+
+.saveBtn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+}
+
+.saveBtn:hover {
+  background: #1e40af;
+}
+
+.cancelBtn {
+  background: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background: #374151;
+}
+
+/* =============================== */
+/* 🎞️ 動畫效果 */
+/* =============================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* =============================== */
+/* 🧭 預設隱藏手機專用元素 */
+/* =============================== */
+.mobileMenuBtn,
+.mobileFooter {
+  display: none;
+}
+
+/* =============================== */
+/* 📱 手機版重製版（2025 優化） */
+/* =============================== */
+@media screen and (max-width: 768px) {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw;
+    background: #0e0e0e;
+    font-family: "Noto Sans TC", sans-serif;
+  }
+
+  .adminContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    background: #0e0e0e;
+    color: #fff;
+    overflow-x: hidden;
+  }
+
+  /* === 頂部導覽列 === */
+  .mobileTopBar {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: #ffffff;
+    color: #fff;
+    padding: 16px 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+  }
+
+  /* ✅ 左上角漢堡按鈕 */
+  .mobileMenuBtn {
+    position: relative;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+  }
+
+  .mobileMenuBtn span {
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff !important;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* ✅ 展開變 X */
+  .mobileMenuBtn.activeMenu span:nth-child(1) {
+    transform: rotate(45deg) translateY(8px);
+  }
+  .mobileMenuBtn.activeMenu span:nth-child(2) {
+    opacity: 0;
+  }
+  .mobileMenuBtn.activeMenu span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  /* ✅ 標題置中 */
+  .sidebarTitle {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ffffff !important;
+    text-align: center;
+  }
+
+  /* === 手機展開選單 === */
+  .menuList {
+    position: fixed;
+    top: 58px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 58px);
+    background: rgba(0, 0, 0, 0.95);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px;
+    z-index: 1000;
+    animation: fadeSlideDown 0.3s ease forwards;
+  }
+
+  .menuList.showMenu {
+    display: flex;
+  }
+
+  .menuList li {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .menuList li:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .menuList li.active {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* === 主內容區 === */
+  .mainContent {
+    padding: 20px 16px 40px;
+    background: #0e0e0e;
+    color: #fff;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    background: #1a1a1a;
+    color: #fff;
+    border-radius: 10px;
+  }
+
+  .table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    background: #1f1f1f;
+    border-radius: 10px;
+  }
+
+  .table th {
+    background: #222;
+    color: #fff;
+  }
+
+  .table td {
+    color: #ccc;
+  }
+
+  /* ✅ 移除底部導覽列 */
+  .mobileFooter {
+    display: none !important;
+  }
+
+  /* ✅ 隱藏桌機限定元素 */
+  .sdiebarACT,
+  .sidebarBottom {
+    display: none !important;
+  }
+
+  /* === 動畫 === */
+  @keyframes fadeSlideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+

@@ -1,0 +1,322 @@
+.aboutContainer {
+  background-color: #f9fafb;
+  min-height: 100vh;
+  color: #333;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+/* Hero 區 */
+.hero {
+  text-align: center;
+  background: #fff;
+  margin-top: 3rem;
+  padding: 3rem 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.heroTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+}
+.heroSubtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+/* 主內容 */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+.section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* 我們的使命 */
+.missionBlock {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.missionBlock h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: rgb(179, 29, 77);
+}
+
+/* 我們能為你做什麼 */
+.featuresSection {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  text-align: center;
+}
+.featuresSection h2 {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  color: rgb(179, 29, 77);
+}
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) {
+  .featuresGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.featureCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+.featureCard:hover {
+  transform: translateY(-5px);
+}
+.checkIcon {
+  color: rgb(179, 29, 77);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.featureCard h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: rgb(0, 0, 0);
+}
+.featureCard p {
+  color: #2c2c2c;
+  font-size: 0.95rem;
+}
+
+/* 成效數據區 */
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  margin: 3rem auto;
+  max-width: 900px;
+  padding: 0 1.5rem;
+}
+.statCard {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.statNumber {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: rgb(179, 29, 77);
+  margin-bottom: 0.5rem;
+}
+
+/* 聯絡我們 */
+.contactBox {
+  background: #ebf3ff;
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 900px;
+  margin: 3rem auto;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+.contactButtons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+.contactButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #2563eb;
+  transition: all 0.3s ease;
+}
+.contactButton:hover {
+  opacity: 0.8;
+}
+.contactButton img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  margin-bottom: 0.5rem;
+  transition: transform 0.2s ease;
+}
+.contactButton:hover img {
+  transform: scale(1.1);
+}
+
+/* === About 專用諮詢區塊 === */
+.aboutHelpSection {
+  text-align: center;
+  background-color: #f2f8f7; 
+  padding: 1em 1rem;
+  padding-bottom: 4rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.347);
+  max-width: 700px;    
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  border-radius: 12px;
+}
+
+.aboutHelpTitle {
+  font-size: 2rem;
+  color: rgb(179, 29, 77);
+  margin-bottom: 0.5rem;
+}
+
+.aboutHelpText {
+  font-size: 1.3rem;
+  color: #000000;
+  margin-bottom: 2rem;
+}
+
+/* 按鈕群組 */
+.aboutHelpButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap; 
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 通用按鈕樣式 */
+.aboutBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* 圖片與文字之間的間距 */
+  flex-direction: row; /* 🔥 強制水平排列 */
+}
+
+/* 各按鈕顏色 */
+.aboutPhone {
+  background-color: rgb(179, 29, 77) !important;
+}
+
+.aboutLine {
+  background-color: #06c755;
+}
+
+.aboutLoan {
+  background-color: rgb(179, 29, 77) !important;
+}
+
+.aboutConsult {
+  background-color: rgb(179, 29, 77) !important;
+}
+
+.aboutBtn:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+/* 按鈕 icon */
+.aboutHelpIcon {
+  width: 26px;
+  height: 26px;
+  padding: 3px;
+}
+
+.lineIcon {
+  width: 26px;
+  height: 26px;
+}
+@media (max-width: 768px) {
+  .section {
+    width: 100%;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+/* ============================= */
+/* 📱 手機版「還有其他問題嗎？」專區 */
+/* ============================= */
+@media (max-width: 768px) {
+  .aboutHelpSection {
+    margin: 2rem 1rem;
+    padding-top: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    border: 2px solid rgb(199, 27, 77);
+    width: calc(100% - 2rem);
+  }
+
+  .aboutHelpTitle {
+    font-size: 1.5rem;
+    color: #b31d4d;
+  }
+
+  .aboutHelpText {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  /* 🔹 讓四顆按鈕變成兩兩一排 */
+  .aboutHelpButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .aboutBtn {
+    width: 100%;
+    max-width: 150px;
+    padding: 0.9rem 0.5rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .aboutBtn:hover {
+    background-color: #8d0f3a;
+  }
+
+  /* 個別顏色調整 */
+  .aboutPhone {
+    background-color: rgb(130, 30, 77) !important;
+  }
+
+  .aboutLine {
+    background-color: rgb(0, 185, 0) !important;
+  }
+
+  .aboutLoan {
+    background-color: rgb(60, 145, 175) !important;
+  }
+
+  .aboutConsult {
+    background-color: rgb(179, 29, 77) !important;
+  }
+
+  /* 圖片尺寸微調 */
+  .aboutHelpIcon {
+    width: 22px;
+    height: 22px;
+  }
+}
