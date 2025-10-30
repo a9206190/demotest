@@ -153,6 +153,7 @@
   justify-content: center;
   gap: 8px; /* 圖片與文字之間的間距 */
   flex-direction: row; /* 🔥 強制水平排列 */
+  color: #fff !important;
 }
 
 /* 各按鈕顏色 */
@@ -202,7 +203,7 @@
 
   .serviceHelpTitle {
     font-size: 1.5rem;
-    color: #b31d4d;
+    color: #b31d4d !important;
   }
 
   .serviceHelpText {

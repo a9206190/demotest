@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Service.module.css";
+import { useNavigate } from "react-router-dom";
 
 // 匯入圖片
 import img1 from "../assets/images/81709885-m.jpg-816x544.jpg";
@@ -12,6 +13,7 @@ import lineIcon from "../assets/icons/line.jpg";
 import phoneIcon from "../assets/icons/phone.jpg";
 
 export default function Service() {
+  const navigate = useNavigate();
   const painPoints = [
     {
       title: "每個月都是月光族",
@@ -104,7 +106,7 @@ export default function Service() {
           {/* 線上核貸 */}
           <button
             className={`${styles.serviceBtn} ${styles.serviceLoan}`}
-            onClick={() => (window.location.href = "/loan")}
+            onClick={() => navigate("/loan")}
           >
             💰 線上核貸
           </button>
@@ -112,7 +114,7 @@ export default function Service() {
           {/* 線上諮詢 */}
           <button
             className={`${styles.serviceBtn} ${styles.serviceConsult}`}
-            onClick={() => (window.location.href = "/consult")}
+            onClick={() => navigate("/#consult-section")}
           >
             🧑‍💻 線上諮詢
           </button>

@@ -1,0 +1,290 @@
+.container {
+  padding: 2rem;
+  background: #f5f7fb;
+  min-height: 100vh;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.topBar h2 {
+  font-size: 1.5rem;
+  color: #222;
+}
+.topBar input {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #ccc;
+  width: 240px;
+}
+.topBar input:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.table th,
+.table td {
+  text-align: center;
+  padding: 0.8rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+.table th {
+  background: #e8eef9;
+  font-weight: 600;
+}
+.table tr:hover {
+  background: #f9fcff;
+}
+
+.detailBtn {
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.detailBtn:hover {
+  background-color: #1558b3;
+}
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 排班按鈕 */
+.shiftButton {
+  background-color: #f7c948;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.shiftButton:hover {
+  background-color: #ffd45a;
+}
+
+/* Modal 背景 */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Modal 主體 */
+.modal {
+  background: #1e1e1e;
+  color: #eee;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.modal h3 {
+  color: #f7c948;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* === Modal 搜尋欄 === */
+.modalSearchBar {
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.modalSearchBar input {
+  width: 70%;
+  max-width: 400px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2b2b2b;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.modalSearchBar input::placeholder {
+  color: #aaa;
+}
+
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #eee;
+  cursor: pointer;
+}
+
+/* === Modal 上方搜尋與匯出列 === */
+.modalTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.modalTopRow input {
+  width: 70%;
+  max-width: 400px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2b2b2b;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+}
+
+.modalTopRow input::placeholder {
+  color: #aaa;
+}
+
+/* 匯出按鈕 */
+.exportButton {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.exportButton:hover {
+  background-color: #66bb6a;
+}
+
+
+/* 排班表格 */
+.shiftTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shiftTable th {
+  background-color: #333;
+  color: #f7c948;
+  padding: 10px;
+  text-align: left;
+}
+
+.shiftTable td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #444;
+}
+
+.shiftTable tr:nth-child(even) {
+  background: #2a2a2a;
+}
+
+/* === 匯出 + 新增排班按鈕區 === */
+.buttonGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.addButton {
+  background-color: #ffb74d;
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.addButton:hover {
+  background-color: #ffc970;
+}
+
+/* === 新增排班 Modal === */
+.formGroup {
+  margin: 12px 0;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 4px;
+  color: #ddd;
+  font-weight: 600;
+}
+
+.formGroup input,
+.formGroup select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2b2b2b;
+  color: #fff;
+  font-size: 14px;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.saveButton {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: #777;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.dateInput {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #2b2b2b;
+  color: #fff;
+  font-size: 14px;
+}

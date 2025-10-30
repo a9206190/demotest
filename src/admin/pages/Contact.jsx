@@ -10,36 +10,54 @@ export default function Admin_Contact() {
   const [toast, setToast] = useState(null);
   const [selected, setSelected] = useState(null);
   const [editMode, setEditMode] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 50;
+
   const user = JSON.parse(sessionStorage.getItem("user") || "{}");
 
-  // 🚀 取得聯絡紀錄資料
-  useEffect(() => {
-    async function fetchContacts() {
-      try {
-        const res = await fetch("http://localhost:8000/src/admin/api/get_contact.php");
-        const result = await res.json();
-        if (result.success) {
-          setContacts(result.data);
-          setFiltered(result.data);
-        } else {
-          setError(result.error || "讀取失敗");
-        }
-      } catch (err) {
-        console.error("❌ 無法連線伺服器：", err);
-        setError("無法連線伺服器");
-      } finally {
-        setLoading(false);
+  //  自動判斷環境（與 Admin_System.jsx 相同邏輯）
+  const isLocal =
+    window.location.origin.includes("localhost") ||
+    window.location.origin.includes("127.0.0.1");
+  const pathPrefix = window.location.pathname.includes("/demo") ? "/demo" : "";
+  const API_BASE = isLocal
+    ? "http://localhost:8000"
+    : `${window.location.origin}${pathPrefix}`;
+
+  //  取得聯絡紀錄資料
+  const fetchContacts = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/get_contact.php`, {
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const result = await res.json();
+      if (result.success) {
+        setContacts(result.data);
+        setFiltered(result.data);
+      } else {
+        setError(result.error || "讀取失敗");
       }
+    } catch (err) {
+      console.error("❌ 無法連線伺服器：", err);
+      setError("無法連線伺服器");
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
     fetchContacts();
   }, []);
 
-  // 🔍 搜尋過濾
+  //  搜尋過濾
   useEffect(() => {
     if (!search.trim()) {
       setFiltered(contacts);
     } else {
       const keyword = search.toLowerCase();
+      setCurrentPage(1); // 每次搜尋重置回第 1 頁
       setFiltered(
         contacts.filter(
           (c) =>
@@ -49,50 +67,38 @@ export default function Admin_Contact() {
       );
     }
   }, [search, contacts]);
+  // === 分頁處理 ===
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIdx = startIdx + ITEMS_PER_PAGE;
+  const currentData = filtered.slice(startIdx, endIdx);
 
-  // ✅ 切換狀態
-  // const toggleStatus = async (id, currentStatus) => {
-  //   const newStatus = currentStatus === "未聯繫" ? "已聯繫" : "未聯繫";
-  //   try {
-  //     const res = await fetch("http://localhost:8000/src/admin/api/update_contact.php", {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({ id, status: newStatus }),
-  //     });
-  //     const result = await res.json();
-  //     if (result.success) {
-  //       setContacts((prev) =>
-  //         prev.map((c) =>
-  //           c.id === id ? { ...c, status: newStatus } : c
-  //         )
-  //       );
-  //       setToast(`狀態已更新為「${newStatus}」`);
-  //       setTimeout(() => setToast(null), 2000);
-  //     } else alert("更新失敗：" + result.message);
-  //   } catch (err) {
-  //     alert("❌ 發生錯誤：" + err.message);
-  //   }
-  // };
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
 
-  // ✅ 編輯
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  //  編輯 / 檢視 / 刪除 / 儲存
   const handleEdit = (c) => {
     setSelected({ ...c });
     setEditMode(true);
   };
 
-  // ✅ 檢視
   const handleView = (c) => {
     setSelected({ ...c });
     setEditMode(false);
   };
 
-  // ✅ 刪除
   const handleDelete = async (id) => {
     if (!window.confirm("確定要刪除此紀錄嗎？")) return;
     try {
-      const res = await fetch("http://localhost:8000/src/admin/api/delete_contact.php", {
+      const res = await fetch(`${API_BASE}/api/admin/delete_contact.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ id }),
       });
       const result = await res.json();
@@ -100,39 +106,36 @@ export default function Admin_Contact() {
         setContacts((prev) => prev.filter((c) => c.id !== id));
         setToast("✅ 已刪除紀錄");
         setTimeout(() => setToast(null), 2000);
-      } else alert("刪除失敗：" + result.message);
+      } else alert("刪除失敗：" + result.error);
     } catch (err) {
       alert("❌ 發生錯誤：" + err.message);
     }
   };
 
-  // ✅ 儲存更新
   const handleSave = async () => {
-  try {
-    const res = await fetch("http://localhost:8000/src/admin/api/update_contact.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(selected),
-    });
-    const result = await res.json();
-    if (result.success) {
-      const updated = result.data; // ← 後端回傳的最新資料
-      setContacts((prev) =>
-        prev.map((c) => (c.id === updated.id ? updated : c))
-      );
-      setToast("✅ 更新成功");
-      setTimeout(() => setToast(null), 2000);
-      setSelected(null);
-    } else {
-      alert("更新失敗：" + result.message);
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/update_contact.php`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(selected),
+      });
+      const result = await res.json();
+      if (result.success) {
+        setToast("✅ 更新成功");
+        setTimeout(() => setToast(null), 2000);
+        setSelected(null);
+        fetchContacts(); // ← 更新後重新載入資料
+      } else {
+        alert("更新失敗：" + result.error);
+      }
+    } catch (err) {
+      alert("❌ 發生錯誤：" + err.message);
     }
-  } catch (err) {
-    alert("❌ 發生錯誤：" + err.message);
-  }
-};
+  };
 
-  // 🧭 載入 / 錯誤顯示
-  if (loading) return <p className={styles.loading}>載入中...</p>;
+  //  載入 / 錯誤顯示
+  if (loading) return <p className={styles.loading}>🧭 載入中...</p>;
   if (error)
     return (
       <div className={styles.error}>
@@ -182,7 +185,7 @@ export default function Admin_Contact() {
               </td>
             </tr>
           ) : (
-            filtered.map((c) => (
+            currentData.map((c) => (
               <tr key={c.id}>
                 <td>{c.id}</td>
                 <td>{c.name}</td>
@@ -198,9 +201,24 @@ export default function Admin_Contact() {
                 <td>{c.contact_note || "—"}</td>
                 <td>{new Date(c.created_at).toLocaleString("zh-TW")}</td>
                 <td>
-                  <button className={`${styles.contactBtn} ${styles.viewBtn}`} onClick={() => handleView(c)}>檢視</button>
-                  <button className={`${styles.contactBtn} ${styles.editBtn}`} onClick={() => handleEdit(c)}>👁️ 編輯</button>
-                  <button className={`${styles.contactBtn} ${styles.deleteBtn}`} onClick={() => handleDelete(c.id)}>🗑️ 刪除</button>
+                  <button
+                    className={`${styles.contactBtn} ${styles.viewBtn}`}
+                    onClick={() => handleView(c)}
+                  >
+                    檢視
+                  </button>
+                  <button
+                    className={`${styles.contactBtn} ${styles.editBtn}`}
+                    onClick={() => handleEdit(c)}
+                  >
+                    ✏️ 編輯
+                  </button>
+                  <button
+                    className={`${styles.contactBtn} ${styles.deleteBtn}`}
+                    onClick={() => handleDelete(c.id)}
+                  >
+                    🗑️ 刪除
+                  </button>
                 </td>
               </tr>
             ))
@@ -208,20 +226,47 @@ export default function Admin_Contact() {
         </tbody>
       </table>
 
-      {/* ✅ 檢視/編輯對話框 */}
+      {/* 📄 分頁控制 */}
+      {filtered.length > 0 && (
+        <div className={styles.pagination}>
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+            ⬅️ 上一頁
+          </button>
+          <span>
+            第 {currentPage} / {totalPages} 頁（共 {filtered.length} 筆）
+          </span>
+          <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+            下一頁 ➡️
+          </button>
+        </div>
+      )}
+
+
+      {/*  檢視/編輯對話框 */}
       {selected && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalBox}>
             <h3>{editMode ? "✏️ 編輯聯絡紀錄" : "👁️ 檢視聯絡紀錄"}</h3>
-            <p><b>姓名：</b>{selected.name}</p>
-            <p><b>電話：</b>{selected.phone}</p>
-            <p><b>建立時間：</b>{new Date(selected.created_at).toLocaleString("zh-TW")}</p>
+            <p>
+              <b>姓名：</b>
+              {selected.name}
+            </p>
+            <p>
+              <b>電話：</b>
+              {selected.phone}
+            </p>
+            <p>
+              <b>建立時間：</b>
+              {new Date(selected.created_at).toLocaleString("zh-TW")}
+            </p>
 
             <label>狀態：</label>
             <select
               disabled={!editMode}
               value={selected.status}
-              onChange={(e) => setSelected({ ...selected, status: e.target.value })}
+              onChange={(e) =>
+                setSelected({ ...selected, status: e.target.value })
+              }
             >
               <option value="未聯繫">未聯繫</option>
               <option value="已聯繫">已聯繫</option>
@@ -238,7 +283,7 @@ export default function Admin_Contact() {
 
             <div className={styles.modalActions}>
               {editMode && <button onClick={handleSave}>💾 儲存</button>}
-              <button onClick={() => setSelected(null)}>關閉</button>
+              <button onClick={() => setSelected(null)}>❌ 關閉</button>
             </div>
           </div>
         </div>

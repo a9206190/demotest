@@ -1,12 +1,7 @@
-/* ========= 原本設定（調整過） ========= */
-
-/* 讓整個 App 走全寬，不被限制 */
 #root {
-  /* 移除原本的 max-width / padding / text-align */
   max-width: none !important;
   padding: 0 !important;
   text-align: initial !important;
-
   margin: 0 auto;
   width: 100%;
   display: flex;
@@ -19,6 +14,7 @@ html, body, #root {
   padding: 0;
   width: 100%;
   min-height: 100%;
+  overflow-x: hidden; /* 關閉水平滾動 */
 }
 
 body {
@@ -163,6 +159,20 @@ main { flex: 1 0 auto; }
 /* ========= RWD ========= */
 /* ========= 手機版 Footer 排版優化 ========= */
 @media (max-width: 768px) {
+    html, body, #root {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden; /* 關閉水平滾動 */  
+    }
+
+    html, body {
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+    }
   .footer-container {
     flex-direction: column;
     align-items: flex-start; /* ✅ 靠左 */

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import logo from "../assets/images/logo.png-115x96.png";
+import logo from "../assets/images/SDLOGO.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Navbar() {
 
         {/* 桌機導覽列（保持原狀） */}
         <ul className="navbar-links">
-          <li><Link to="/FAQ">常問問題</Link></li>
+          <li><Link to="/FAQ">常見問題</Link></li>
           <li><Link to="/about">關於我們</Link></li>
           <li><Link to="/service">顧客服務</Link></li>
           <li><Link to="/contact">聯絡我們</Link></li>
@@ -46,7 +46,7 @@ export default function Navbar() {
         {/* 手機滿版下拉選單 */}
         <div className={`mobile-dropdown ${menuOpen ? "active" : ""}`}>
           <ul>
-            <li><Link to="/FAQ" onClick={closeMenu}>常問問題</Link></li>
+            <li><Link to="/FAQ" onClick={closeMenu}>常見問題</Link></li>
             <li><Link to="/about" onClick={closeMenu}>關於我們</Link></li>
             <li><Link to="/service" onClick={closeMenu}>顧客服務</Link></li>
             <li><Link to="/contact" onClick={closeMenu}>聯絡我們</Link></li>

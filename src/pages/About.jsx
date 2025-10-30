@@ -2,8 +2,11 @@ import React from "react";
 import lineIcon from "../assets/icons/line.jpg";
 import { FaCheckCircle } from "react-icons/fa";
 import styles from "./About.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function About() {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.aboutContainer}>
       {/* Hero Section */}
@@ -113,7 +116,7 @@ export default function About() {
             {/* 線上核貸 */}
             <button
             className={`${styles.aboutBtn} ${styles.aboutLoan}`}
-            onClick={() => (window.location.href = "/loan")}
+            onClick={() => navigate("/loan")}
             >
             💰 線上核貸
             </button>
@@ -121,7 +124,7 @@ export default function About() {
             {/* 線上諮詢 */}
             <button
             className={`${styles.aboutBtn} ${styles.aboutConsult}`}
-            onClick={() => (window.location.href = "/consult")}
+            onClick={() => navigate("/#consult-section")}
             >
             🧑‍💻 線上諮詢
             </button>

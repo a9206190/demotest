@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import styles from "./FAQ.module.css"; // ✅ 模組化樣式導入
+import { useNavigate } from "react-router-dom"; 
+import styles from "./FAQ.module.css"; 
 import lineIcon from "../assets/icons/line.jpg";
 
 const faqs = [
@@ -76,6 +77,7 @@ const faqs = [
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
   const toggleFAQ = (index) => setOpenIndex(openIndex === index ? null : index);
+  const navigate = useNavigate();
 
   return (
     <div className={styles.faqPage}>
@@ -131,12 +133,24 @@ export default function FAQ() {
             className={`${styles.faqBtn} ${styles.faqPhone}`}
             onClick={() => (window.location.href = "tel:0905626580")}
           >
-            📞 電話諮詢
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={styles.phoneIcon}
+            >
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3.09 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72c.12.83.37 1.64.72 2.4a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.9 6.9l1.27-1.27a2 2 0 0 1 2.11-.45c.76.35 1.57.6 2.4.72A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            電話諮詢
           </button>
           <button
             className={`${styles.faqBtn} ${styles.faqLine}`}
             onClick={() =>
-                window.open("https://line.me/R/ti/p/@335lmovr", "_blank")
+              window.open("https://line.me/R/ti/p/@335lmovr", "_blank")
             }
             >
             <img src={lineIcon} alt="Line Icon" className={styles.lineIcon} />
@@ -146,13 +160,13 @@ export default function FAQ() {
 
           <button
             className={`${styles.faqBtn} ${styles.faqLoan}`}
-            onClick={() => (window.location.href = "/loan")}
+            onClick={() => navigate("/loan")}
           >
             💰 線上核貸
           </button>
           <button
             className={`${styles.faqBtn} ${styles.faqConsult}`}
-            onClick={() => (window.location.href = "/consult")}
+            onClick={() => navigate("/#consult-section")}
           >
             🧑‍💻 線上諮詢
           </button>

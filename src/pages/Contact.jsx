@@ -2,9 +2,11 @@ import React from "react";
 import styles from "./Contact.module.css";
 import { FaEnvelope, FaPhoneAlt, FaLine } from "react-icons/fa";
 import { MdAccessTime, MdLocationOn, MdBusiness, MdPrint } from "react-icons/md";
-import lineIcon from "../assets/icons/line.jpg"; // ✅ LINE 圖示
+import { useNavigate } from "react-router-dom";
+import lineIcon from "../assets/icons/line.jpg"; 
 
 export default function Contract() {
+  const navigate = useNavigate();
   return (
     <div className={styles.contractContainer}>
       {/* 頁首 */}
@@ -81,7 +83,7 @@ export default function Contract() {
         </div>
       </section>
 
-      {/* ✅ Contact 專用諮詢區塊 */}
+      {/*  Contact 專用諮詢區塊 */}
       <section className={styles.contactHelpSection}>
         <h2 className={styles.contactHelpTitle}>還有其他問題嗎？</h2>
         <p className={styles.contactHelpText}>我們的專業顧問團隊隨時為您服務</p>
@@ -113,7 +115,7 @@ export default function Contract() {
           {/* 線上核貸 */}
           <button
             className={`${styles.contactBtn} ${styles.contactLoan}`}
-            onClick={() => (window.location.href = "/loan")}
+            onClick={() => navigate("/loan")}
           >
             💰 線上核貸
           </button>
@@ -121,7 +123,7 @@ export default function Contract() {
           {/* 線上諮詢 */}
           <button
             className={`${styles.contactBtn} ${styles.contactConsult}`}
-            onClick={() => (window.location.href = "/consult")}
+            onClick={() => navigate("/#consult-section")}
           >
             🧑‍💻 線上諮詢
           </button>

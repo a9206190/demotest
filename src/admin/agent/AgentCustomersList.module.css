@@ -1,0 +1,144 @@
+/* ==================================================
+   AgentCustomersList.module.css — 深色主題 代理商客戶列表
+   ================================================== */
+
+.container {
+  background-color: #1e1e1e;
+  color: #f1f1f1;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  font-family: "Noto Sans TC", sans-serif;
+  max-width: 1100px;
+  margin: 60px auto;
+}
+
+/* === 標題列 === */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.headerRow h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #f7c948;
+}
+
+.backBtn {
+  background-color: #2b2b2b;
+  color: #f7c948;
+  border: 1px solid #555;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.backBtn:hover {
+  background-color: #f7c948;
+  color: #1e1e1e;
+}
+
+/* === 搜尋 / 篩選列 === */
+.filterBar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.filterBar input,
+.filterBar select {
+  background: #2b2b2b;
+  color: #eee;
+  border: 1px solid #555;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.filterBar input:focus,
+.filterBar select:focus {
+  outline: none;
+  border-color: #f7c948;
+}
+
+/* === 表格 === */
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: 10px;
+  background: #252525;
+  border: 1px solid #333;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #333;
+  color: #f7c948;
+  font-weight: 600;
+  border-bottom: 2px solid #444;
+}
+
+.table td {
+  border-bottom: 1px solid #333;
+}
+
+.table tr:nth-child(even) {
+  background-color: #242424;
+}
+
+.table tr:hover {
+  background-color: #383838;
+}
+
+/* === 狀態顏色 === */
+.statusTag {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.pending {
+  background-color: #ffb84d;
+}
+
+.approved {
+  background-color: #4caf50;
+}
+
+.rejected {
+  background-color: #e74c3c;
+}
+
+/* === 欄位強調 === */
+.table td:nth-child(3) {
+  color: #4fc3f7;
+  font-weight: 500;
+}
+
+.table td:nth-child(5) {
+  color: #f7c948;
+  font-weight: 500;
+}
+
+/* === 無資料 === */
+.container p {
+  text-align: center;
+  color: #bbb;
+  margin-top: 40px;
+}

@@ -1,0 +1,183 @@
+/* === 主容器 === */
+.container {
+  padding: 2rem;
+  font-family: "Microsoft JhengHei", "Segoe UI", sans-serif;
+  background-color: #f5f7fb;
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+
+/* === 頂部標題與匯出 === */
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.topBar h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+.exportBtn {
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.exportBtn:hover {
+  background-color: #1558b3;
+  transform: translateY(-1px);
+}
+
+/* === 搜尋列 === */
+.searchBar {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.4rem;
+}
+.searchBar input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #cfd3dc;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+}
+.searchBar input:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 6px rgba(26, 115, 232, 0.3);
+}
+
+/* === 主表格 === */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.table th,
+.table td {
+  padding: 0.9rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e5e8ed;
+  font-size: 0.95rem;
+}
+.table th {
+  background-color: #eef3fa;
+  font-weight: 600;
+  color: #333;
+}
+.table tr:hover {
+  background-color: #f9fbff;
+}
+
+/* === 狀態標籤 === */
+.statusBadge {
+  display: inline-block;
+  min-width: 80px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+}
+.approved {
+  background: #2ecc71;
+}
+.pending {
+  background: #f9e79f;
+  color: #7d6608;
+}
+.rejected {
+  background: #e74c3c;
+}
+
+/* === 操作按鈕組 === */
+.actionBtns {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+/* === 按鈕樣式 === */
+.fileBtn,
+.editBtn,
+.deleteBtn {
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.fileBtn {
+  background-color: #1a73e8;
+  color: #fff;
+}
+.fileBtn:hover {
+  background-color: #1558b3;
+}
+
+.editBtn {
+  background-color: #fbbc04;
+  color: #111;
+}
+.editBtn:hover {
+  background-color: #e2a500;
+}
+
+.deleteBtn {
+  background-color: #ea4335;
+  color: #fff;
+}
+.deleteBtn:hover {
+  background-color: #c5221f;
+}
+
+/* === 載入與空資料狀態 === */
+.loading,
+.empty {
+  text-align: center;
+  padding: 3rem;
+  font-size: 1.1rem;
+  color: #666;
+}
+
+/* === 響應式（手機版調整） === */
+@media (max-width: 768px) {
+  .table {
+    font-size: 0.85rem;
+  }
+  .topBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .exportBtn {
+    width: 100%;
+  }
+  .actionBtns {
+    flex-direction: column;
+  }
+}

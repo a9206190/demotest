@@ -1,0 +1,428 @@
+/* =============================== */
+/* 🌐 帳號管理系統：桌機版 */
+/* =============================== */
+
+.mainContent {
+  background: #f7f9fb;
+  color: #333;
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+/* === 頂部列 === */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.headerRow h2 {
+  font-size: 1.6rem;
+  color: #111827;
+}
+
+.headerBtns {
+  display: flex;
+  gap: 10px;
+}
+
+.backBtn,
+.addBtn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.backBtn {
+  background: #6b7280;
+}
+.backBtn:hover {
+  background: #4b5563;
+}
+.addBtn:hover {
+  background: #1d4ed8;
+}
+
+/* === 搜尋區 === */
+.searchBar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.searchBar input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.searchBar input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.searchBar button {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.searchBar button:hover {
+  background: #1d4ed8;
+}
+
+/* === 資料表 === */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.table th {
+  background: #f1f5f9;
+  color: #374151;
+  font-weight: 600;
+  padding: 12px;
+  text-align: center;
+}
+
+.table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: center;
+  color: #374151;
+  font-size: 0.95rem;
+}
+.referralCode {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: #e8f0fe;
+  color: #003c8f;
+  font-weight: 600;
+  border-radius: 6px;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+
+/* === 操作按鈕 === */
+.table button {
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  margin: 0 3px;
+}
+.table button:hover {
+  background: #2563eb;
+  transform: scale(1.05);
+}
+.table button:last-child {
+  background: #ef4444;
+}
+.table button:last-child:hover {
+  background: #dc2626;
+}
+
+/* === Modal 視窗 === */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal {
+  background: #fff;
+  color: #111;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 450px;
+  padding: 24px 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal h3 {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+}
+
+.modal input:focus,
+.modal select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+.modalBtns {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.saveBtn {
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 0;
+  flex: 1;
+  cursor: pointer;
+}
+.saveBtn:hover {
+  background: #15803d;
+}
+.cancelBtn {
+  background: #6b7280;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 0;
+  flex: 1;
+  cursor: pointer;
+}
+.cancelBtn:hover {
+  background: #4b5563;
+}
+
+/* =============================== */
+/* 📱 手機版樣式 */
+/* =============================== */
+@media (max-width: 768px) {
+  /* === 主體 === */
+  .mainContent {
+    padding: 70px 16px 24px;
+    background: #0d1117;
+    color: #f5f5f5;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 {
+    color: #fff !important;
+    text-align: center !important;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  /* === 搜尋列 === */
+  .searchBar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  .searchBar input {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    border: 1px solid #30363d;
+    background: #161b22;
+    color: #fff;
+  }
+
+  .searchBar button {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 0;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  .searchBar button:hover {
+    background: #1d4ed8;
+  }
+
+  /* === 表格列表改成卡片式 === */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .table th {
+    display: none;
+  }
+
+  .table tr {
+    border-bottom: 1px solid #30363d;
+    padding: 8px 0;
+    user-select: none;
+  }
+
+  .table td {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px 0;
+    border: none;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* === 左側欄位名稱 === */
+  .table td::before {
+    font-weight: 600;
+    color: #c2c3c5;
+    margin-right: 10px;
+    flex: 0 0 50px;
+    text-align: left;
+  }
+
+  /* === 五行標籤對應 === */
+  .table tr td:nth-child(1)::before {
+    content: "帳號：";
+  }
+  .table tr td:nth-child(2)::before {
+    content: "暱稱：";
+  }
+  .table tr td:nth-child(3)::before {
+    content: "權限：";
+  }
+  .table tr td:nth-child(4)::before {
+    content: "狀態：";
+  }
+  .table tr td:nth-child(5)::before {
+    content: "操作：";
+  }
+
+  /* === 右側文字顏色 === */
+  .trtextcolor {
+    color: #fff;
+  }
+  .table td span {
+    flex: 1;
+    color: #fff !important;
+    word-break: break-all;
+    text-align: left;
+  }
+  
+
+  /* === 操作按鈕區 === */
+  .table td:last-child {
+    display: flex;
+    justify-content: left;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .table button {
+    flex: 1 1 45%;
+    max-width: 220px;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .table button:first-child {
+    background: #3b82f6;
+  }
+  .table button:first-child:hover {
+    background: #2563eb;
+  }
+
+  .table button:last-child {
+    background: #ef4444;
+  }
+  .table button:last-child:hover {
+    background: #dc2626;
+  }
+
+  /* === Modal === */
+  .modal {
+    background: #161b22;
+    color: #fff;
+    border: 1px solid #30363d;
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .modal input,
+  .modal select {
+    background: #0d1117;
+    color: #fff;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    padding: 8px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .saveBtn {
+    background: #22c55e;
+  }
+
+  .cancelBtn {
+    background: #6b7280;
+  }
+
+  /* === 防止手機反白 === */
+  * {
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+}

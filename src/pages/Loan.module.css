@@ -1,3 +1,19 @@
+:global(input),
+:global(textarea),
+:global(select) {
+  background-color: #e6e6e6 !important;
+  color: #111 !important;
+}
+
+:global(input:focus),
+:global(textarea:focus),
+:global(select:focus) {
+  background-color: #e6e6e6 !important;
+  border-color: #999 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
 /* === Loan 主容器 === */
 .loanContainer {
   max-width: 900px;
@@ -77,7 +93,7 @@
   margin-bottom: 3rem;
 }
 .stepBox h2 {
-  color: #1976d2;
+  color: #1976d2 !important;
   margin-bottom: 1rem;
 }
 .stepBox p {
@@ -135,14 +151,43 @@
   margin-top: 5px;
   transform: scale(1.2);
   accent-color: #1976d2;
+  width: 20px;
+  flex-shrink: 0;
+}
+/* ✅ 文字區寬度 */
+.agreeLabel span {
+  flex: 1;             /* 自動撐滿剩餘空間 */
+  max-width: 600px;    /* 限制最大寬度（可調） */
+  display: block;
 }
 
-/* === 表單結構 === */
-.formGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 1rem;
+/* === 全域統一輸入框（for subStep） === */
+.formGrid input,
+.formGrid select,
+.formGrid textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ffffff !important;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: all 0.2s;
+  background-color: #fff;
+  color: #333;
+}
+
+.formGrid input:hover,
+.formGrid select:hover,
+.formGrid textarea:hover {
+  border-color: #1976d2;
+  box-shadow: 0 0 4px rgba(25, 118, 210, 0.2);
+}
+
+.formGrid input:focus,
+.formGrid select:focus,
+.formGrid textarea:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.4);
+  outline: none;
 }
 
 /* === 兩欄 === */
@@ -168,7 +213,10 @@
 .leftCol input,
 .rightCol input,
 .sixColRow select,
-.fullWidth textarea {
+.fullWidth textarea, 
+.contactRow input,
+.select, .select option,
+.selectField {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid #ccc;
@@ -178,6 +226,7 @@
   background-color: #fff;
   color: #333;
 }
+
 input:hover,
 select:hover,
 textarea:hover {
@@ -201,17 +250,59 @@ textarea:focus {
 
 /* === 聯絡人欄位 === */
 .contactRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap; /* 保險：小螢幕時自動換行 */
+}
+
+/* 每位聯絡人區塊 */
+.contactGroup {
+  flex: 1;
+  min-width: 340px;
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 16px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 2px 16px;
+  grid-template-columns: 1fr 1fr; /* 上半部兩欄：姓名 + 關係 */
+  gap: 2px;
   align-items: center;
-  text-align: center;
 }
-.contactRow label {
+
+/* 下半部電話佔兩欄 */
+.phoneLabel {
+  grid-column: 1 / 3;
+  text-align: left !important;
   font-weight: 600;
-  font-size: 0.9rem;
-  text-align: right;
+  margin-top: 4px;
 }
+
+.phoneInput {
+  grid-column: 1 / 3;
+  width: 100%;
+}
+
+/* label 與 input 統一樣式 */
+.contactGroup label {
+  font-weight: 600;
+  color: #000;
+  text-align: left;
+}
+
+.contactGroup input {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #333;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+
 
 /* === 負債詳情 === */
 .fullWidth {
@@ -231,12 +322,16 @@ textarea:focus {
 }
 
 /* === 日期選擇器 === */
+.input {
+  margin-top: 20px !important;
+}
 .customDatePicker {
   width: 100%;
   padding: 10px 12px;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 15px;
+  margin-top: 20px;
 }
 
 /* === Step3 上傳證件 === */
@@ -308,6 +403,28 @@ textarea:focus {
 }
 
 /* === 簽名 === */
+.startSignBtn,
+.clearBtn,
+.saveBtn,
+.cancelBtn,
+.downloadBtn {
+  color: #fff !important;
+}
+.startSignBtn {
+  background-color: #8700c2;
+}
+.clearBtn {
+    background-color: #c90000;
+}
+.saveBtn {
+    background-color: #009937;
+}
+.cancelBtn {
+    background-color: #371cfa;
+}
+.downloadBtn {
+    background-color: #19b800;
+}
 .signatureCanvas {
   border: 2px solid #ccc;
   border-radius: 8px;
@@ -322,9 +439,10 @@ textarea:focus {
   justify-content: center;
   gap: 10px;
   margin-top: 12px;
+  color: #fff ;
 }
 .signaturePreview img {
-  width: 400px;
+  width: 300px;
   height: auto;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -369,60 +487,116 @@ textarea:focus {
   }
 
   /* 步驟條直向 */
-  .stepBar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    margin-top: 1.5rem;
-  }
-  .stepBox {
-    margin-top: 2rem;
-  }
-  .stepBar::before {
-    content: "";
-    position: absolute;
-    left: 18px;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: #e0e0e0;
+  .stepBarWrapper {
+    width: 100%;
+    overflow-x: auto;          /*  可水平滾動 */
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; /*  提升 iOS 滑動順暢度 */
   }
 
-  .stepItem {
-    display: flex;
+  .stepBar {
+    display: flex;             /*  改成水平排列 */
+    flex-wrap: nowrap;
+    justify-content: flex-start;
     align-items: center;
-    gap: 12px;
-    text-align: center;
+    gap: 1.5rem;               /* 每個步驟間距 */
+    min-width: 600px;          /*  限制最小寬度 */
+    padding: 1rem;
+    margin: 0 auto;
     position: relative;
   }
 
-  .stepItem::after {
-    display: none;
+  .stepItem {
+    flex: 0 0 auto;            /*  禁止壓縮 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    margin-left: 2px !important;
   }
 
   .stepCircle {
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    background: #ccc;
+    color: #fff;
+    font-weight: bold;
     font-size: 14px;
-    flex-shrink: 0;
+    transition: all 0.3s ease;
   }
 
   .stepLabel {
-    font-size: 14px;
+    font-size: 13px;
     color: #333;
-    margin: 0;
-  }
-
-  .stepItem.completed .stepCircle {
-    background: #4caf50;
+    margin-top: 4px;
+    width: 80px;
   }
 
   .stepItem.active .stepCircle {
     background: #1976d2;
   }
 
-  /* 表單單欄化 */
+  .stepItem.completed .stepCircle {
+    background: #4caf50;
+  }
+
+  /*  水平連線效果 */
+  .stepItem:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: -3rem;
+    width: 4.4rem;
+    height: 3px;
+    background: #ccc;
+    z-index: 1;
+  }
+
+  .stepItem.completed:not(:last-child)::after {
+    background: #4caf50;
+  }
+
+  /* === 表單與欄位 === */
+  input,
+  textarea,
+  select {
+    background-color: #e6e6e6 !important;
+    color: #111 !important;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    background-color: #e6e6e6 !important;
+    border-color: #999 !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #777 !important;
+  }
+  /* === 地區下拉選單（residentArea） === */
+  select[name="residentArea"] {
+    max-height: 180px;          /* 限制展開高度（約顯示 5～6 個選項） */
+    overflow-y: auto;           /* 超出可捲動 */
+    font-size: 1rem;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    color: #111;
+    border: none;
+    outline: none;
+  }
+
+  /* 修正 iOS / Android 原生樣式（部分瀏覽器會忽略 max-height） */
+  select[name="residentArea"] option {
+    font-size: 1rem;
+    padding: 8px;
+  }
+  /* === 雙欄調整 === */
   .twoColumn {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -430,15 +604,22 @@ textarea:focus {
     align-items: start;
     text-align: left !important;
   }
+  .customDatePicker {
+    margin-left: 10px !important;
+  }
 
+  /* === 六欄壓縮成兩欄 === */
   .sixColRow {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }
 
+  /* === 聯絡人欄位 === */
   .contactRow {
     display: grid;
-    grid-template-columns: 1fr; /* 單欄 */
+    grid-template-columns: 1fr 1fr;
+    gap: 10px 12px;
+    align-items: center;
     background: #fff;
     border-radius: 12px;
     padding: 16px;
@@ -447,37 +628,43 @@ textarea:focus {
   }
 
   .contactRow label {
-    display: block;
     font-weight: 600;
-    color: #111;
-    margin-bottom: 6px;
-    text-align: left !important;
-    font-size: 20px;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-bottom: 4px;
+  }
+
+  .contactGroup {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 12px;
   }
 
   .contactRow input {
     width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 15px;
-    background-color: #fff;
-    color: #333;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: #f5f5f5 !important;
+    color: #111 !important;
+    -webkit-text-fill-color: #111 !important;
   }
 
   .contactRow input:focus {
+    background-color: #f5f5f5 !important;
     border-color: #1976d2;
-    box-shadow: 0 0 0 3px rgba(25,118,210,0.2);
     outline: none;
+    box-shadow: none;
   }
 
-    .uploadGrid {
-        display: grid;
-        grid-template-columns: 1fr; /* 單欄排列 */
-        gap: 20px;
-        margin-top: 1rem;
-    }
+  /* === 上傳區塊 === */
+  .uploadGrid {
+    display: grid;
+    grid-template-columns: 1fr; /* 單欄排列 */
+    gap: 20px;
+    margin-top: 1rem;
+  }
 
   .uploadCard {
     width: 100%;
@@ -485,11 +672,10 @@ textarea:focus {
     border: 1px solid #e5e7eb;
     border-radius: 12px;
     padding: 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
   }
+
   .uploadLabel {
-    display: flex;
     text-align: left;
     font-weight: 600;
     color: #111;
@@ -508,21 +694,24 @@ textarea:focus {
     cursor: pointer;
     transition: all 0.3s ease;
   }
+
   .uploadPlaceholder:hover {
     background-color: #f0f7ff;
     border-color: #1976d2;
   }
+
   .uploadPlaceholder span {
     color: #555;
     font-size: 0.95rem;
   }
+
   .uploadPlaceholder input {
     display: none;
   }
 
   .previewBox {
     width: 100%;
-    height: 200px;
+    max-height: 350px;
     border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
@@ -533,7 +722,7 @@ textarea:focus {
   .previewImage {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 10px;
   }
 
@@ -541,7 +730,7 @@ textarea:focus {
     position: absolute;
     top: 6px;
     right: 6px;
-    background: rgba(255, 77, 79, 0.9);
+    background: rgba(255,77,79,0.9);
     border: none;
     color: #fff;
     border-radius: 50%;
@@ -549,14 +738,14 @@ textarea:focus {
     height: 26px;
     cursor: pointer;
     font-weight: bold;
-    line-height: 1;
     transition: background 0.2s;
   }
+
   .removeBtn:hover {
     background: #ff4d4f;
   }
 
-  /* 合約與表格縮排 */
+  /* === 表格與按鈕 === */
   .contractBox {
     font-size: 14px;
     padding: 12px;
@@ -568,17 +757,38 @@ textarea:focus {
     font-size: 13px;
   }
 
-  /* 按鈕組垂直 */
   .btnGroup {
     flex-direction: column;
     gap: 10px;
   }
+
   .btnGroup button {
     width: 100%;
     font-size: 15px;
   }
 
-  /* 簽名視窗縮放 */
+  /* === 簽名視窗縮放 === */
+  .startSignBtn {
+    background-color: #601ec3 !important;
+    color: beige !important;
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    font-size: 1em !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: border-color .25s !important;
+    width: 21.7rem !important;
+  }
+  .clearBtn {
+    background-color: #000 !important;
+    color: beige !important;
+    border-radius: 8px !important;
+    border: 1px solid transparent !important;
+    font-size: 1em !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: border-color .25s !important;
+  }
   .modalContent {
     width: 94%;
     padding: 12px;
@@ -589,15 +799,21 @@ textarea:focus {
     height: 180px !important;
     border-radius: 10px;
     border: 2px solid #ccc;
+    background: #fff !important;
+  }
+  .saveBtn, .cancelBtn {
+    background-color: #000 !important;
+    color: #fff !important;
+  }
+  .downloadBtn {
+    background-color: #000 !important;
+    color: #fff !important;
   }
 }
 
-/* === 強制亮色模式 === */
-@media (prefers-color-scheme: dark) {
-  input,
-  select,
-  textarea {
-    background-color: #fff !important;
-    color: #222 !important;
-  }
+
+/* 🚫 強制亮色主題（防止手機瀏覽器 dark mode 反色） */
+html, body {
+  color-scheme: light !important;
+  background-color: #fff !important;
 }

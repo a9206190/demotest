@@ -127,7 +127,21 @@
   align-items: center;
   justify-content: center;
   gap: 8px; /* 圖片與文字之間的間距 */
-  flex-direction: row; /* 🔥 強制水平排列 */
+  flex-direction: row;
+  min-width: 140px; /*  固定寬度，可依需求調整 */
+  height: 48px;     /*  統一高度 */
+  color: #fff !important;  
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.faqBtn svg {
+  width: 32px;
+  height: 32px;
+  padding-top: 8px;
 }
 
 .faqhelph2 {
@@ -186,7 +200,7 @@
 
   .faqhelph2 {
     font-size: 1.5rem;
-    color: #b31d4d;
+    color: #b31d4d !important;
   }
 
   .faqhelptext {
@@ -242,6 +256,15 @@
   .lineIcon {
     width: 22px;
     height: 22px;
-    margin-right: 4px;
+    margin-right: -4px;
+  }
+  .phoneIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: -4px;
+    vertical-align: middle;
+    position: relative;
+    top: 2px; /* 微調垂直位置 */
+    stroke: #fff; /* 如果按鈕底是彩色，可設白色線條 */
   }
 }

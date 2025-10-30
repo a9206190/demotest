@@ -48,7 +48,7 @@
 .missionBlock h2 {
   font-size: 1.6rem;
   margin-bottom: 1rem;
-  color: rgb(179, 29, 77);
+  color: rgb(179, 29, 77) !important;
 }
 
 /* 我們能為你做什麼 */
@@ -61,7 +61,7 @@
 .featuresSection h2 {
   font-size: 1.6rem;
   margin-bottom: 2rem;
-  color: rgb(179, 29, 77);
+  color: rgb(179, 29, 77) !important;
 }
 .featuresGrid {
   display: grid;
@@ -205,6 +205,7 @@
   justify-content: center;
   gap: 8px; /* 圖片與文字之間的間距 */
   flex-direction: row; /* 🔥 強制水平排列 */
+  color: #fff !important;
 }
 
 /* 各按鈕顏色 */
@@ -245,6 +246,9 @@
     padding-left: 2rem;
     padding-right: 2rem;
   }
+  .section h2{
+    color: #b31d4d!important;
+  }
 }
 /* ============================= */
 /* 📱 手機版「還有其他問題嗎？」專區 */
@@ -262,7 +266,7 @@
 
   .aboutHelpTitle {
     font-size: 1.5rem;
-    color: #b31d4d;
+    color: #b31d4d !important;
   }
 
   .aboutHelpText {

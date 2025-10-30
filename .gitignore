@@ -5,6 +5,9 @@
 Thumbs.db
 *.swp
 *.swo
+*.log
+*.bak
+*.tmp
 
 # =============================
 # 🧱 Node / 前端相關
@@ -13,6 +16,8 @@ node_modules/
 dist/
 dist-ssr/
 *.local
+.vite/
+vite.config.timestamp-*.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -35,13 +40,37 @@ vendor/
 composer.lock
 tmp/
 uploads/
+cache/
+storage/
+logs/
+*.cache
+*.log
 
 # =============================
 # ⚙️ 環境設定與私密資訊
 # =============================
 .env
 .env.local
+.env.*
 config.php
+config/Database.php
+config/*.ini
+config/*.json
+config/*.key
+config/*.pem
+
+# =============================
+# 🔒 加密 / 混淆 / 敏感腳本
+# =============================
+*.enc
+*.encoded
+*.obfuscated.php
+encrypt.php
+decrypt.php
+ioncube/
+encryption_keys/
+secure_build/
+build_secure.sh
 
 # =============================
 # 🗃️ 資料庫備份與匯出
@@ -50,3 +79,30 @@ config.php
 *.sqlite
 *.db
 *.bak
+*.xlsx
+*.csv
+*.xls
+*.zip
+*.tar.gz
+*.7z
+
+# =============================
+# 🧩 部署與伺服器專用
+# =============================
+/uploads/
+/tmp/
+/backup/
+/logs/
+/.ftpquota
+*.htaccess
+!public/.htaccess   # ✅ 若你的前端使用 public/.htaccess 記得保留
+
+# =============================
+# 🧪 測試與備份
+# =============================
+__tests__/
+__mocks__/
+coverage/
+*.test.js
+*.spec.js
+*.orig

@@ -26,7 +26,7 @@
 .contentSection {
   display: flex;
   justify-content: center;
-  align-items: stretch; /* ✅ 讓兩邊高度對齊 */
+  align-items: stretch; 
   gap: 40px;
   flex-wrap: wrap;
 }
@@ -47,7 +47,7 @@
 .sectionTitle {
   font-size: 1.4rem;
   margin-bottom: 20px;
-  color: #1976d2;
+  color: #1976d2 !important;
   border-left: 5px solid #1976d2;
   padding-left: 10px;
 }
@@ -101,7 +101,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   line-height: 1.8;
-  flex-grow: 1; /* ✅ 讓左側內容撐滿卡片高度 */
+  flex-grow: 1; 
 }
 
 .infoColumn p {
@@ -123,7 +123,7 @@
 /* 地圖 */
 .mapBlock iframe {
   width: 100%;
-  height: 100%; /* ✅ 地圖填滿右側區塊高度 */
+  height: 100%; 
   border: none;
   border-radius: 12px;
   flex-grow: 1;
@@ -246,7 +246,7 @@
   padding: 3px;
 }
 /* ============================== */
-/* 📱 手機版 Contact 專區優化設定 */
+/*  手機版 Contact 優化設定 */
 /* ============================== */
 @media (max-width: 768px) {
   .infoBlock {
@@ -282,7 +282,7 @@
 
   .contactHelpTitle {
     font-size: 1.5rem;
-    color: #b31d4d;
+    color: #b31d4d !important;
   }
 
   .contactHelpText {

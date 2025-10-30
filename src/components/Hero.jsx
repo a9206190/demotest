@@ -1,20 +1,35 @@
-import React, { useState } from "react";
-import banner from "../assets/images/banner/banner_1751447533.jpg";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Hero.css";
+import bannerDesktop from "../assets/images/banner/banner_1751447533.jpg";
+import bannerMobile from "../assets/images/bannerbanner_mobile_1751447536.jpg";
 import lineIcon from "../assets/icons/line.jpg";
 import phoneIcon from "../assets/icons/phone.jpg";
+
 
 export default function Hero() {
   const [formData, setFormData] = useState({ name: "", phone: "" });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const handleBannerClick = () => {
+    navigate("/loan");
+  };
 
-  // ✅ 直接指定本地 API 路徑（避免 process.env 錯誤）
-  const API_BASE = "http://localhost:8000/api/";
+  const API_BASE = `${window.location.origin}/api/`;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,17 +69,30 @@ export default function Hero() {
     { id: "zRI8v6JsCxc" },
     { id: "mjyjYFdv6KM" },
   ];
+  const location = useLocation();
 
+  useEffect(() => {
+    // 如果網址帶有 #consult-section，就自動滾動
+    if (location.hash) {
+      const el = document.querySelector(location.hash);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [location]);
   return (
     <div className="hero-container">
-      {/* ✅ Banner 區塊 */}
-      <a href="/Loan"><section
+      {/* ✅ Banner 區塊（根據裝置顯示不同圖片） */}
+      <section
         className="hero-banner"
-        style={{ backgroundImage: `url(${banner})` }}
-      ></section></a>
+        onClick={handleBannerClick}
+        style={{
+          backgroundImage: `url(${isMobile ? bannerMobile : bannerDesktop})`,
+        }}
+      ></section>
 
       {/* ✅ 免費諮詢表單 */}
-      <section className="hero-form-section">
+      <section className="hero-form-section" id="consult-section">
         <h2 className="consult-title">立即免費諮詢</h2>
         <form onSubmit={handleSubmit} className="consult-form">
           <div className="form-group">
@@ -122,12 +150,17 @@ export default function Hero() {
 
         <div className="help-buttons">
           <div className="help-row">
-            <button className="help-btn phone">📞 電話諮詢</button>
-            <button className="help-btn line">💬 Line 諮詢</button>
-            <button className="help-btn loan">💰 線上核貸</button>
+            <button className="help-btn phone" onClick={() => window.open("tel:0905626580")}>📞 電話諮詢</button>
+            <button className="help-btn line" onClick={() => window.open("https://line.me/R/ti/p/@335lmovr", "_blank")}>
+              <img src={lineIcon} alt="Line Icon" class="lineIcon"></img>Line 諮詢
+              </button>
+            <button className="help-btn loan" onClick={() => navigate("/loan")}>💰 線上核貸</button>
           </div>
           <div className="help-row">
-            <button className="help-btn consult">🧑‍💻 線上諮詢</button>
+            <button className="help-btn consult" onClick={() => {
+              const el = document.getElementById("consult-section");
+              if (el) el.scrollIntoView({ behavior: "smooth"});
+            }}>🧑‍💻 線上諮詢</button>
           </div>
         </div>
       </section>

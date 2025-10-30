@@ -1,51 +1,84 @@
 <?php
 // ============================
-// config/Database.php
+// config/Database.php (MySQL 自動切換版本)
 // ============================
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-
 class Database {
-    // 資料庫設定
-    private $host = "localhost";       // 主機名稱
-    private $port = "5432";            // PostgreSQL 預設 port
-    private $dbname = "Moneyfast";     // 資料庫名稱
-    private $username = "postgres";    // 使用者帳號
-    private $password = "admin";   // 密碼
-
     private $conn; // PDO 連線物件
 
-    // ✅ 統一使用 getConnection()
-    public function getConnection() {
-        if ($this->conn !== null) {
-            return $this->conn; // 若已連線就直接回傳
+    // ✅ 自動切換主機設定
+    private $config = [
+        "local" => [
+            "host" => "localhost",
+            "port" => "3306",
+            "dbname" => "moneyfast",
+            "username" => "moneyfast",
+            "password" => "Moneyfast20251010", 
+        ],
+        "remote" => [
+            "host" => "61.219.192.39",
+            "port" => "3306",
+            "dbname" => "moneyfast",
+            "username" => "moneyfast",
+            "password" => "Moneyfast20251010", 
+        ]
+    ];
+
+    // ✅ 判斷目前要連哪個環境
+    private function getEnvironment() {
+        // 若伺服器名稱包含 "localhost" 或 "127.0.0.1" 就用本地設定
+        if (isset($_SERVER['SERVER_NAME']) && 
+            (strpos($_SERVER['SERVER_NAME'], 'localhost') !== false || 
+             strpos($_SERVER['SERVER_NAME'], '127.0.0.1') !== false)) {
+            return "local";
         }
 
-        try {
-            $dsn = "pgsql:host={$this->host};port={$this->port};dbname={$this->dbname}";
-            $this->conn = new PDO($dsn, $this->username, $this->password);
+        // 或者明確定義環境變數（例如：$_ENV['APP_ENV'] = 'remote';）
+        if (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] === 'remote') {
+            return "remote";
+        }
 
-            // 設定 PDO 屬性
+        // 預設使用 local
+        return "local";
+    }
+
+    // ✅ 統一取得連線物件
+    public function getConnection() {
+        if ($this->conn !== null) {
+            return $this->conn;
+        }
+
+        $env = $this->getEnvironment();
+        $dbConf = $this->config[$env];
+
+        try {
+            $dsn = "mysql:host={$dbConf['host']};port={$dbConf['port']};dbname={$dbConf['dbname']};charset=utf8mb4";
+            $this->conn = new PDO($dsn, $dbConf['username'], $dbConf['password']);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
+            // ✅ 顯示成功訊息
+            // echo "✅ 已連線至 {$env} 環境 ({$dbConf['host']})<br>";
+
         } catch (PDOException $e) {
-            echo "<div style='color: red; font-weight: bold;'>❌ 資料庫連線失敗：" . $e->getMessage() . "</div>";
+            echo "<div style='color: red; font-weight: bold;'>❌ 資料庫連線失敗（{$env}）："
+                . $e->getMessage() . "</div>";
             $this->conn = null;
         }
 
-                return $this->conn;
-            }
+        return $this->conn;
+    }
 
-    // （可選）測試用：快速驗證連線成功
+    // ✅ 測試連線
     public function testConnection() {
         $conn = $this->getConnection();
         if ($conn) {
-            $version = $conn->query("SELECT version();")->fetchColumn();
-            echo "✅ 已成功連線 PostgreSQL！<br>";
-            echo "📦 PostgreSQL 版本：$version";
+            $version = $conn->query("SELECT VERSION();")->fetchColumn();
+            echo "✅ 已成功連線 MySQL！<br>";
+            echo "📦 MySQL 版本：$version";
         } else {
             echo "❌ 無法建立資料庫連線。";
         }
